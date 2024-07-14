@@ -4,7 +4,20 @@ org: studyjstack
 service: aws-serverless-framework-101
 
 plugins:
+  - serverless-esbuild
   - serverless-offline
+
+build:
+  esbuild: false
+
+custom:
+  esbuild:
+    target: node20
+    format: esm
+    minify: true
+    outputFileExtension: .mjs
+    watch:
+      pattern: src/**/+.ts
 
 provider:
   name: aws
