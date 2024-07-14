@@ -25,6 +25,18 @@ custom:
 provider:
   name: aws
   runtime: nodejs20.x
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:PutItem
+            - dynamodb:GetItem
+            - dynamodb:Scan
+            - dynamodb:DeleteItem
+            - dynamodb:UpdateItem
+          Resource:
+            - !GetAtt ProductsTable.Arn
 
 package:
   individually: true
@@ -55,7 +67,7 @@ functions:
           path: /products/{productId}
           method: PUT
   deleteProduct:
-    handler: src/functions/updateProduct.handler
+    handler: src/functions/deleteProduct.handler
     events:
       - httpApi:
           path: /products/{productId}
