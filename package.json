@@ -1,0 +1,13 @@
+{
+  "name": "aws-serverless-framework-101",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Matheus Todao <itodaomatheus@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "sls offline --reloadHandler"
+  },
+  "devDependencies": {
+    "serverless-offline": "^13.6.0"
+  }
+}
