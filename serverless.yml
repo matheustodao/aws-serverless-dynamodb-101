@@ -3,14 +3,23 @@ org: studyjstack
 # "service" is the name of this project. This will also be added to your AWS resource names.
 service: aws-serverless-framework-101
 
+plugins:
+  - serverless-offline
+
 provider:
   name: aws
   runtime: nodejs20.x
 
 functions:
   hello:
-    handler: handler.hello
+    handler: src/functions/hello.handler
     events:
       - httpApi:
           path: /
+          method: get
+  insane:
+    handler: src/functions/insane.handler
+    events:
+      - httpApi:
+          path: /insane
           method: get
