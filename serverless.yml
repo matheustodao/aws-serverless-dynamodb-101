@@ -1,7 +1,7 @@
 # "org" ensures this Service is used with the correct Serverless Framework Access Key.
 org: studyjstack
 # "service" is the name of this project. This will also be added to your AWS resource names.
-service: aws-serverless-framework-101
+service: aws-serverless-dynamodb-101
 
 plugins:
   - serverless-esbuild
@@ -30,22 +30,50 @@ package:
   individually: true
 
 functions:
-  hello:
-    handler: src/functions/hello.handler
+  listProducts:
+    handler: src/functions/listProducts.handler
     events:
       - httpApi:
-          path: /
-          method: get
-  insane:
-    handler: src/functions/insane.handler
-    memorySize: 512
+          method: GET
+          path: /products
+  getProduct:
+    handler: src/functions/getProduct.handler
     events:
       - httpApi:
-          path: /insane
-          method: get
-  getUserById:
-    handler: src/functions/getUserById.handler
+          path: /products/{productId}
+          method: GET
+  createProduct:
+    handler: src/functions/createProduct.handler
     events:
       - httpApi:
-          method: get
-          path: /user/{id}
+          path: /products
+          method: POST
+  updateProduct:
+    handler: src/functions/updateProduct.handler
+    events:
+      - httpApi:
+          path: /products/{productId}
+          method: PUT
+  deleteProduct:
+    handler: src/functions/updateProduct.handler
+    events:
+      - httpApi:
+          path: /products/{productId}
+          method: DELETE
+
+# CloudFormation <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resources-section-structure.html>
+resources:
+  Resources:
+    ProductsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ProductsTable
+        BillingMode: PAY_PER_REQUEST
+        PointInTimeRecoverySpecification:
+          PointInTimeRecoveryEnabled: true
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
