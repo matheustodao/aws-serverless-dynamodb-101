@@ -1,0 +1,36 @@
+# INSTALL Rest Client EXTENSION in vscode <https://marketplace.visualstudio.com/items?itemName=humao.rest-client>
+
+@host = https://<ID>.execute-api.us-east-1.amazonaws.com
+
+###
+GET {{host}}/products
+
+
+###
+GET {{host}}/products/<PRODUCT_ID>
+
+
+###
+POST {{host}}/products
+Content-Type: application/json
+
+{
+  "name": "FireTv",
+  "price": 2,
+  "tags": ["amazon", "iot"],
+  "inStock": true
+}
+
+###
+PUT {{host}}/products/<PRODUCT_ID>
+Content-Type: application/json
+
+{
+  "name": "FireTv",
+  "price": 2,
+  "tags": ["amazon", "iot"],
+  "inStock": true
+}
+
+###
+DELETE {{host}}/products/<PRODUCT_ID>
