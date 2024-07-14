@@ -10,6 +10,9 @@ provider:
   name: aws
   runtime: nodejs20.x
 
+package:
+  individually: true
+
 functions:
   hello:
     handler: src/functions/hello.handler
@@ -19,6 +22,7 @@ functions:
           method: get
   insane:
     handler: src/functions/insane.handler
+    memorySize: 512
     events:
       - httpApi:
           path: /insane
