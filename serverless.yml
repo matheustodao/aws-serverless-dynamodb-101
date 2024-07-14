@@ -40,3 +40,9 @@ functions:
       - httpApi:
           path: /insane
           method: get
+  getUserById:
+    handler: src/functions/getUserById.handler
+    events:
+      - httpApi:
+          method: get
+          path: /user/{id}
