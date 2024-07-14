@@ -15,9 +15,12 @@ custom:
     target: node20
     format: esm
     minify: true
+    sourcemap: false
     outputFileExtension: .mjs
-    watch:
-      pattern: src/**/+.ts
+    exclude:
+      - '@aws-skd/*'
+    platform: node
+    concurrency: 10
 
 provider:
   name: aws
