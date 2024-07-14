@@ -5,9 +5,15 @@
   "author": "Matheus Todao <itodaomatheus@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "sls offline --reloadHandler"
+    "dev": "sls offline --reloadHandler",
+    "deploy": "sls deploy",
+    "deploy:function": "sls deploy function -f"
   },
   "devDependencies": {
-    "serverless-offline": "^13.6.0"
+    "@types/aws-lambda": "^8.10.141",
+    "esbuild": "^0.23.0",
+    "serverless-esbuild": "^1.52.1",
+    "serverless-offline": "^13.6.0",
+    "typescript": "^5.5.3"
   }
 }
