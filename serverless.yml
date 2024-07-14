@@ -18,7 +18,7 @@ custom:
     sourcemap: false
     outputFileExtension: .mjs
     exclude:
-      - '@aws-skd/*'
+      - '@aws-sdk/*'
     platform: node
     concurrency: 10
 
